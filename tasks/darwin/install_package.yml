@@ -1,0 +1,5 @@
+---
+- name: Install ccache from homebrew
+  homebrew:
+    name: ccache
+    state: present

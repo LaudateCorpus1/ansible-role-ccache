@@ -1,0 +1,22 @@
+---
+- name: Ensure ccache cache directory exists
+  become: true
+  file:
+    path: "{{ ccache_cache_path }}"
+    state: directory
+    owner: "{{ ccache_user }}"
+
+- name: Ensure ccache configuration directory exists
+  become: true
+  file:
+    path: "~{{ ccache_user }}/.ccache"
+    state: directory
+    owner: "{{ ccache_user }}"
+
+- name: Create ccache configuration file
+  become: true
+  template:
+    src: "templates/ccache.conf.j2"
+    dest: "~{{ ccache_user }}/.ccache/ccache.conf"
+    owner: "{{ ccache_user }}"
+    mode: 0644
