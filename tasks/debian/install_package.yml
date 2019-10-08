@@ -1,5 +1,6 @@
 ---
 - name: Install ccache package from apt
+  become: true
   apt:
     name: ccache
     state: present
