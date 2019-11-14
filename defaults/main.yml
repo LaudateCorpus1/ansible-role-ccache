@@ -6,8 +6,17 @@ ccache_build_from_sources: false
 # Where to store the compiler cache files
 ccache_cache_path: "/var/ccache"
 
+# Set the "compression" configuration setting
+ccache_compression: false
+
 # Maximum size of ccache cache
 ccache_max_size: "1G"
+
+# Set the "run_second_cpp" configuration setting
+ccache_run_second_cpp: true
+
+# Set the "slopiness" configuration setting
+ccache_slopiness: ""
 
 # User to configure ccache for
 ccache_user: "{{ ansible_user }}"
