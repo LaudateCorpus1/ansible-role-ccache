@@ -15,8 +15,8 @@ ccache_max_size: "1G"
 # Set the "run_second_cpp" configuration setting
 ccache_run_second_cpp: true
 
-# Set the "slopiness" configuration setting
-ccache_slopiness: ""
+# Set the "sloppiness" configuration setting
+ccache_sloppiness: ""
 
 # User to configure ccache for
 ccache_user: "{{ ansible_user }}"
