@@ -10,7 +10,7 @@ ccache_cache_path: "/var/ccache"
 ccache_compression: false
 
 # Maximum size of ccache cache
-ccache_max_size: "1G"
+ccache_max_size: "5G"
 
 # Set the "run_second_cpp" configuration setting
 ccache_run_second_cpp: true
