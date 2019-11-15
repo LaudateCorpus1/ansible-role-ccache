@@ -4,7 +4,7 @@
 ccache_build_from_sources: false
 
 # Where to store the compiler cache files
-ccache_cache_path: "/var/ccache"
+ccache_cache_dir: "/var/ccache"
 
 # Set the "compression" configuration setting
 ccache_compression: false
