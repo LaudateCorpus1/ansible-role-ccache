@@ -1,7 +1,21 @@
 ---
+##################################
+# Installation-related variables #
+##################################
+
 # When true, compile and build ccache from source instead of installing from a package
 # manager.
 ccache_build_from_sources: false
+
+# User to configure ccache for
+ccache_user: "{{ ansible_user }}"
+
+# Version of ccache to install. Only applies when installing from sources.
+ccache_version: "3.7.4"
+
+###################################
+# Configuration-related variables #
+###################################
 
 # Where to store the compiler cache files
 ccache_cache_dir: "/var/ccache"
@@ -17,9 +31,3 @@ ccache_run_second_cpp: true
 
 # Set the "sloppiness" configuration setting
 ccache_sloppiness: ""
-
-# User to configure ccache for
-ccache_user: "{{ ansible_user }}"
-
-# Version of ccache to install. Only applies when installing from sources.
-ccache_version: "3.7.4"
