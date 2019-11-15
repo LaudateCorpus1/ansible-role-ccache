@@ -1,5 +1,5 @@
 cache_dir = {{ ccache_cache_path }}
-compression = {{ ccache_compression }}
+compression = {{ ccache_compression | lower }}
 max_size = {{ ccache_max_size }}
-run_second_cpp = {{ ccache_run_second_cpp }}
+run_second_cpp = {{ ccache_run_second_cpp | lower }}
 slopiness = {{ ccache_slopiness }}
