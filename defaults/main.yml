@@ -31,17 +31,42 @@ ccache_version: "3.7.5"
 # Configuration-related variables #
 ###################################
 
-# Where to store the compiler cache files
+# Each of these options correspond to a ccache configuration variable of the same name,
+# but without the "ccache_" prefix. More more information on the following settings,
+# please refer to the ccache manual's "Configuration# settings" section:
+# https://ccache.dev/manual/latest.html#_configuration_settings
+
+ccache_base_dir: ""
 ccache_cache_dir: "/var/ccache"
-
-# Set the "compression" configuration setting
+ccache_cache_dir_levels: 2
+ccache_compiler: ""
+ccache_compiler_check: "mtime"
 ccache_compression: false
-
-# Maximum size of ccache cache
+ccache_compression_level: 6
+ccache_cpp_extension: ""
+ccache_debug: false
+ccache_depend_mode: false
+ccache_direct_mode: true
+ccache_disable: false
+ccache_extra_files_to_hash: ""
+ccache_hard_link: false
+ccache_hash_dir: true
+ccache_ignore_headers_in_manifest: ""
+ccache_keep_comments_cpp: false
+ccache_limit_multiple: "0.8"
+ccache_log_file: ""
+ccache_max_files: 0
 ccache_max_size: "5G"
-
-# Set the "run_second_cpp" configuration setting
+ccache_path: ""
+ccache_pch_external_checksum: false
+ccache_prefix_command: ""
+ccache_prefix_command_cpp: ""
+ccache_read_only: false
+ccache_read_only_direct: false
+ccache_recache: false
 ccache_run_second_cpp: true
-
-# Set the "sloppiness" configuration setting
 ccache_sloppiness: ""
+ccache_stats: true
+ccache_temporary_dir: ""
+ccache_umask: ""
+ccache_unify: false
