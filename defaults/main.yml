@@ -11,7 +11,7 @@ ccache_build_from_sources: false
 ccache_user: "{{ ansible_user }}"
 
 # Version of ccache to install. Only applies when installing from sources.
-ccache_version: "3.7.4"
+ccache_version: "3.7.5"
 
 ###################################
 # Configuration-related variables #
