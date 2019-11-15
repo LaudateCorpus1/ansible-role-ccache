@@ -7,6 +7,20 @@
 # manager.
 ccache_build_from_sources: false
 
+# List of compiler binary names to symlink (see ccache_symlink_path below)
+ccache_symlink_compilers:
+  - cc
+  - c++
+  - gcc
+  - g++
+
+# When defined, create symlinks for common compiler names in this directory. Some package
+# managers create symlinks in various locations, but source installation (`make install`)
+# does do this by default.
+# This location needs to be added to the user's PATH ahead of the location containing the
+# real compiler binaries.
+ccache_symlink_path: ""
+
 # User to configure ccache for
 ccache_user: "{{ ansible_user }}"
 

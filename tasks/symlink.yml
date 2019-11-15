@@ -1,0 +1,22 @@
+---
+- name: Ensure symlink directory exists
+  become: true
+  file:
+    path: "{{ ccache_symlink_path }}"
+    state: directory
+  when: ccache_symlink_path != ""
+
+- name: Determine absolute path for ccache
+  shell: "which ccache"  # noqa 305
+  changed_when: false
+  register: ccache_location
+  when: ccache_symlink_path != ""
+
+- name: Symlink common compiler names
+  become: true
+  file:
+    path: "{{ ccache_symlink_path }}/{{ item }}"
+    src: "{{ ccache_location.stdout }}"
+    state: link
+  with_items: "{{ ccache_symlink_compilers }}"
+  when: ccache_symlink_path != ""
