@@ -8,6 +8,9 @@
 
 - name: Determine absolute path for ccache
   shell: "which ccache"  # noqa 305
+  environment:
+    # brew on Mac installs packages here
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
   changed_when: false
   register: ccache_location
   when: ccache_symlink_path != ""
