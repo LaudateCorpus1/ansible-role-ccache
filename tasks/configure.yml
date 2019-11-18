@@ -2,7 +2,7 @@
 - name: Ensure ccache cache directory exists
   become: true
   file:
-    path: "{{ ccache_cache_path }}"
+    path: "{{ ccache_cache_dir }}"
     state: directory
     owner: "{{ ccache_user }}"
 
