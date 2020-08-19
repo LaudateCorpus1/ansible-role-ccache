@@ -30,4 +30,4 @@
     content: "{{ ccache_conf_file_contents }}"
     dest: "~{{ ccache_user }}/.ccache/ccache.conf"
     owner: "{{ ccache_user }}"
-    mode: 0644
+    mode: "0644"
