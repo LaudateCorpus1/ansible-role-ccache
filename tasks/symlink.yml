@@ -4,6 +4,7 @@
   file:
     path: "{{ ccache_symlink_path }}"
     state: directory
+    mode: "0755"
   when: ccache_symlink_path != ""
 
 - name: Determine absolute path for ccache
@@ -21,5 +22,6 @@
     path: "{{ ccache_symlink_path }}/{{ item }}"
     src: "{{ ccache_location.stdout }}"
     state: link
+    mode: "0755"
   with_items: "{{ ccache_symlink_compilers }}"
   when: ccache_symlink_path != ""
