@@ -4,6 +4,13 @@
     msg: "This role is not supported on Windows"
   when: ansible_os_family == "Windows"
 
+# The ccache packages for Ubuntu <= 18.04 are too old and there are no newer backports
+- name: Force ccache to be built by source on older Ubuntu systems
+  set_fact:
+    ccache_build_from_sources: true
+  when: >
+    ansible_distribution == 'Ubuntu' and ansible_distribution_major_version | int <= 18
+
 - include_tasks: "unix/build_sources.yml"
   when: ccache_build_from_sources
 
