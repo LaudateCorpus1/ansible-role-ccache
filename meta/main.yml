@@ -4,7 +4,7 @@ galaxy_info:
   company: Ableton AG
   description: Installs ccache compiler cache
   github_branch: master
-  license: BSD
+  license: MIT
   min_ansible_version: 2.10
   role_name: ccache
 
