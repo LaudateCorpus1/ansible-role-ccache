@@ -1,24 +1,25 @@
 ---
 galaxy_info:
-  role_name: ccache
-  author: Nik Reiman
-  description: Installs ccache compiler cache
+  author: ableton
   company: Ableton AG
-
-  license: BSD
-
-  min_ansible_version: 1.2
-
+  description: Installs ccache compiler cache
   github_branch: master
+  license: MIT
+  min_ansible_version: 2.10
+  role_name: ccache
+
+  galaxy_tags:
+    - ccache
 
   platforms:
     - name: Debian
+      versions:
+        - all
+    - name: Ubuntu
       versions:
         - all
     - name: Mac OS X
       versions:
         - all
 
-  galaxy_tags: []
-
-  dependencies: []
+dependencies: []
