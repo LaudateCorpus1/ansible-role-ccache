@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: ccache
-  author: Nik Reiman
+  author: ableton
   description: Installs ccache compiler cache
   company: Ableton AG
 
