@@ -14,10 +14,10 @@
 - include_tasks: "unix/build-sources.yml"
   when: ccache_build_from_sources
 
-- include_tasks: "darwin/install-package.yml"
+- include_tasks: "darwin/install-package-{{ ansible_pkg_mgr }}.yml"
   when: not ccache_build_from_sources and ansible_os_family == "Darwin"
 
-- include_tasks: "debian/install-package.yml"
+- include_tasks: "debian/install-package-{{ ansible_pkg_mgr }}.yml"
   when: not ccache_build_from_sources and ansible_os_family == "Debian"
 
 - include_tasks: "symlink.yml"
