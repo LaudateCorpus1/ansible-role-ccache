@@ -1,0 +1,6 @@
+---
+- name: Install ccache from MacPorts
+  become: true
+  macports:
+    name: ccache
+    state: present

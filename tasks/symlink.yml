@@ -10,8 +10,8 @@
 - name: Determine absolute path for ccache
   shell: "which ccache"  # noqa command-instead-of-shell
   environment:
-    # brew on Mac installs packages here
-    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+    # Homebrew on Mac installs packages to /usr/local/bin, and MacPorts to /opt/local/bin.
+    PATH: "/usr/local/bin:/opt/local/bin:{{ ansible_env.PATH }}"
   changed_when: false
   register: ccache_location
   when: ccache_symlink_path != ""
