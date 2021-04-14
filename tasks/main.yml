@@ -11,7 +11,7 @@
   when: >
     ansible_distribution == 'Ubuntu' and ansible_distribution_major_version | int <= 18
 
-- include_tasks: "unix/build-sources.yml"
+- import_tasks: "unix/build-sources.yml"
   when: ccache_build_from_sources
 
 - include_tasks: "darwin/install-package-{{ ansible_pkg_mgr }}.yml"
@@ -20,6 +20,6 @@
 - include_tasks: "debian/install-package-{{ ansible_pkg_mgr }}.yml"
   when: not ccache_build_from_sources and ansible_os_family == "Debian"
 
-- include_tasks: "symlink.yml"
+- import_tasks: "symlink.yml"
 
-- include_tasks: "configure.yml"
+- import_tasks: "configure.yml"
