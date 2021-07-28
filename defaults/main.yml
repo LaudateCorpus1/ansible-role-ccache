@@ -1,8 +1,4 @@
 ---
-##################################
-# Installation-related variables #
-##################################
-
 # When true, compile and build ccache from source instead of installing from a package
 # manager.
 ccache_build_from_sources: false
