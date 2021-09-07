@@ -14,6 +14,7 @@ def test_ccache_config(host):
 
     assert ccache_config_file.is_file
     assert ccache_config_file.user == "molecule"
+    assert ccache_config_file.group == "molecule"
     assert "cache_dir = /tmp/caches/ccache" in ccache_config_file.content_string
     assert "compression = true" in ccache_config_file.content_string
 
