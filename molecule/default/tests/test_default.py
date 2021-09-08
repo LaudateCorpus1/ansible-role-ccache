@@ -1,3 +1,5 @@
+"""Molecule tests for the default scenario."""
+
 import os
 
 import pytest
@@ -10,6 +12,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 def test_ccache_config(host):
+    """Test that ccache configuration files/directories were created."""
     ccache_config_file = host.file("/home/molecule/.ccache/ccache.conf")
 
     assert ccache_config_file.is_file
@@ -20,6 +23,7 @@ def test_ccache_config(host):
 
 
 def test_ccache_installed(host):
+    """Test that ccache was installed from sources."""
     ccache_bin_file = host.file("/usr/local/bin/ccache")
 
     assert ccache_bin_file.is_file
@@ -28,6 +32,7 @@ def test_ccache_installed(host):
 
 @pytest.mark.parametrize("compiler", ["cc", "c++", "clang", "clang++"])
 def test_ccache_symlinks(host, compiler):
+    """Test that all compiler symlinks were created correctly."""
     ccache_symlink_path = "/tmp/lib/ccache"
     ccache_symlink_dir = host.file(ccache_symlink_path)
     compiler_symlink = host.file(os.path.join(ccache_symlink_path, compiler))
