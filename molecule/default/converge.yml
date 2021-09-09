@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    ansible_user: "molecule"
+    ccache_config_options:
+      cache_dir: "/tmp/caches/ccache"
+      compression: "true"
+    ccache_symlink_path: "/tmp/lib/ccache"
+    ccache_symlink_compilers:
+      - cc
+      - c++
+      - clang
+      - clang++
+  roles:
+    - ansible-role-ccache

@@ -1,18 +1,11 @@
 ---
-- name: Ensure ccache cache directory exists
-  become: true
-  file:
-    path: "{{ ccache_cache_dir }}"
-    state: directory
-    owner: "{{ ccache_user }}"
-    mode: "0755"
-
 - name: Ensure ccache configuration directory exists
   become: true
   file:
     path: "~{{ ccache_user }}/.ccache"
     state: directory
     owner: "{{ ccache_user }}"
+    group: "{{ ccache_user }}"
     mode: "0755"
 
 - name: Initialize ccache_conf_file fact
@@ -32,4 +25,5 @@
     content: "{{ ccache_conf_file_contents }}"
     dest: "~{{ ccache_user }}/.ccache/ccache.conf"
     owner: "{{ ccache_user }}"
+    group: "{{ ccache_user }}"
     mode: "0644"
