@@ -23,7 +23,7 @@ def test_ccache_config(host):
 
 def test_ccache_installed(host):
     """Test that ccache was installed from sources."""
-    ccache_bin_file = host.file("/usr/local/bin/ccache")
+    ccache_bin_file = host.file("/tmp/bin/ccache")
 
     assert ccache_bin_file.is_file
     assert ccache_bin_file.mode == 0o0755
