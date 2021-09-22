@@ -1,6 +1,8 @@
 ---
 - name: Check ccache version
   command: "ccache --version"
+  environment:
+    PATH: "{{ ccache_install_prefix }}/bin:{{ ansible_pkg_mgr_path }}"
   changed_when: false
   failed_when: false
   register: ccache_version_cmd
@@ -9,55 +11,46 @@
   set_fact:
     should_build_sources: false
 
-- name: Set fact to determine if ccache installation is necessary
-  set_fact:
-    should_build_sources: true
+- name: Build ccache from sources
+  block:
+    - name: Fetch ccache sources
+      get_url:
+        url: "https://github.com/ccache/ccache/releases/download/v{{ ccache_version }}\
+          /ccache-{{ ccache_version }}.tar.gz"
+        dest: "{{ ccache_build_dir }}"
+
+    - name: Uncompress ccache tarball
+      unarchive:
+        src: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}.tar.gz"
+        dest: "{{ ccache_build_dir }}"
+        mode: "0755"
+        remote_src: true
+
+    - name: Run configure script
+      command: "./configure --prefix={{ ccache_install_prefix }}"
+      args:
+        chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
+
+    - name: Build ccache
+      command: "make -j{{ ccache_make_jobs }}"
+      args:
+        chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
+
+    - name: Install ccache
+      become: true
+      command: "make install"
+      args:
+        chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
+
+    - name: Cleanup build directory
+      file:
+        path: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
+        state: absent
+
+    - name: Cleanup source tarball
+      file:
+        path: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}.tar.gz"
+        state: absent
   when: >
     ccache_version_cmd.rc != 0 or
     ccache_version not in ccache_version_cmd.stdout_lines[0]
-
-- name: Fetch ccache sources
-  get_url:
-    url: "https://github.com/ccache/ccache/releases/download/v{{ ccache_version }}\
-      /ccache-{{ ccache_version }}.tar.gz"
-    dest: "{{ ccache_build_dir }}"
-  when: should_build_sources
-
-- name: Uncompress ccache tarball
-  unarchive:
-    src: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}.tar.gz"
-    dest: "{{ ccache_build_dir }}"
-    mode: "0755"
-    remote_src: true
-  when: should_build_sources
-
-- name: Run configure script
-  command: "./configure --prefix={{ ccache_install_prefix }}"
-  args:
-    chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
-  when: should_build_sources
-
-- name: Build ccache
-  command: "make -j{{ ccache_make_jobs }}"
-  args:
-    chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
-  when: should_build_sources
-
-- name: Install ccache
-  become: true
-  command: "make install"
-  args:
-    chdir: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
-  when: should_build_sources
-
-- name: Cleanup build directory
-  file:
-    path: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}"
-    state: absent
-  when: should_build_sources
-
-- name: Cleanup source tarball
-  file:
-    path: "{{ ccache_build_dir }}/ccache-{{ ccache_version }}.tar.gz"
-    state: absent
-  when: should_build_sources

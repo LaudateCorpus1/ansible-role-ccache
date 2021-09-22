@@ -11,6 +11,12 @@ ccache_build_from_sources: false
 # https://ccache.dev/manual/latest.html#_configuration_settings
 ccache_config_options: {}
 
+# Where to install ccache when building from sources
+ccache_install_prefix: "/usr/local"
+
+# Number of simultaneous jobs to use when building from sources (make -jN)
+ccache_make_jobs: 4
+
 # List of compiler binary names to symlink (see ccache_symlink_path below)
 ccache_symlink_compilers:
   - cc
