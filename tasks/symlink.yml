@@ -10,7 +10,7 @@
 - name: Determine absolute path for ccache
   shell: "which ccache"  # noqa command-instead-of-shell
   environment:
-    PATH: "{{ ansible_pkg_mgr_path }}"
+    PATH: "{{ ccache_install_prefix }}/bin:{{ ansible_pkg_mgr_path }}"
   changed_when: false
   register: ccache_location
   when: ccache_symlink_path != ""

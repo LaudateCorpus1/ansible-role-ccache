@@ -1,9 +1,3 @@
 ---
 # Scratch directory to use when building from sources
 ccache_build_dir: "/tmp"
-
-# Where to install ccache when building from sources
-ccache_install_prefix: "/usr/local"
-
-# Number of simultaneous jobs to use when building from sources (make -jN)
-ccache_make_jobs: 4

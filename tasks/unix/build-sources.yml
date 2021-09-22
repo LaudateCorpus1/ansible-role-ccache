@@ -1,6 +1,8 @@
 ---
 - name: Check ccache version
   command: "ccache --version"
+  environment:
+    PATH: "{{ ccache_install_prefix }}/bin:{{ ansible_pkg_mgr_path }}"
   changed_when: false
   failed_when: false
   register: ccache_version_cmd
