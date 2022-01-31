@@ -36,7 +36,7 @@ devToolsProject.run(
       groovylint: { groovylint.checkSingleFile(path: './Jenkinsfile') },
       molecule: {
         withEnv(["ANSIBLE_ROLES_PATH=${data.rolesPath}"]) {
-          data.venv.run('molecule --debug test')
+          data.venv.run('molecule --debug test --all')
         }
       }
     )
